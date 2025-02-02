@@ -1,3 +1,4 @@
+# This file is completely ChatGPT because i dont want to learn YAML
 name: Build and Release Eidos
 
 on:
@@ -10,7 +11,7 @@ jobs:
     strategy:
       matrix:
         target:
-          - x86_64-unknown-linux-gnu  # Debian-based
+          - x86_64-unknown-linux-gnu  # Debian-based (Ubuntu)
           - x86_64-unknown-linux-musl # Alpine
           - x86_64-unknown-linux-gnu  # Fedora
           - x86_64-unknown-linux-gnu  # Arch
@@ -30,6 +31,7 @@ jobs:
 
       - name: Build for ${{ matrix.target }}
         run: |
+          cd cargo
           if [ "${{ matrix.target }}" = "x86_64-unknown-linux-musl" ]; then
             cross build --release --target=${{ matrix.target }}
           else
@@ -39,7 +41,7 @@ jobs:
       - name: Rename and prepare binary
         run: |
           BIN_NAME="eidos-${{ matrix.target }}"
-          mv target/${{ matrix.target }}/release/eidos $BIN_NAME
+          mv cargo/target/${{ matrix.target }}/release/eidos $BIN_NAME
           chmod +x $BIN_NAME
 
       - name: Upload binary as an artifact
