@@ -1,0 +1,34 @@
+{
+  "statements": {
+    "print": {
+      "syntax": "print",
+      "template": "print({0})"
+    },
+    "assignment": {
+      "syntax": "let",
+      "template": "{0} = {2}"
+    }
+  },
+  "blocks": {
+    "if": {
+      "start": "if",
+      "end": "endif",
+      "template": "if {condition}:\n{body}"
+    },
+    "while": {
+      "start": "while",
+      "end": "endwhile",
+      "template": "while {condition}:\n{body}"
+    }
+  },
+  "operators": {
+    "add": {
+      "symbol": "+",
+      "template": "({0} + {1})"
+    },
+    "subtract": {
+      "symbol": "-",
+      "template": "({0} - {1})"
+    }
+  }
+}
